@@ -22,11 +22,9 @@ class Sidebar(ctk.CTkFrame):
         self.container.pack(fill="both", expand=True)
 
     def refresh(self):
-        # wyczyść
         for widget in self.container.winfo_children():
             widget.destroy()
 
-        # dodaj elementy
         for req in self.history_manager.get_all():
             text = f"{req.method} {req.url}"
 
