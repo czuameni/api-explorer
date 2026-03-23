@@ -1,0 +1,54 @@
+{
+  "collections": [
+    {
+      "name": "Test API",
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://jsonplaceholder.typicode.com/posts/1",
+          "headers": {},
+          "params": {},
+          "body": null,
+          "auth": null
+        },
+        {
+          "method": "GET",
+          "url": "https://jsonplaceholder.typicode.com/posts/1",
+          "headers": {},
+          "params": {},
+          "body": null,
+          "auth": null
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "headers": {},
+      "params": {},
+      "body": null,
+      "auth": null
+    },
+    {
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "headers": {},
+      "params": {},
+      "body": null,
+      "auth": null
+    },
+    {
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "headers": {},
+      "params": {},
+      "body": null,
+      "auth": null
+    }
+  ],
+  "environments": {
+    "base_url": "https://jsonplaceholder.typicode.com"
+  }
+}

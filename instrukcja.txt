@@ -1,0 +1,22 @@
+## Instrukcja (PL)
+
+1. Zainstaluj wymagane biblioteki:
+
+pip install -r requirements.txt
+
+2. Uruchom aplikację:
+
+python -m app.main
+
+3. Używanie:
+
+- Wpisz URL (np. http://127.0.0.1:8000/users)
+- Wybierz metodę (GET / POST)
+- (Opcjonalnie) dodaj body lub headers
+- Kliknij "Send"
+- Odpowiedź pojawi się na dole
+
+4. Historia:
+
+- Każdy request zapisuje się automatycznie
+- Kliknij w sidebar, aby ponownie załadować request
