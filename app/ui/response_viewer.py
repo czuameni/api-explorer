@@ -10,21 +10,18 @@ class ResponseViewer(ctk.CTkFrame):
         self._build()
 
     def _build(self):
-        # STATUS BAR
         self.status_label = ctk.CTkLabel(self, text="Status: -")
         self.status_label.pack(anchor="w", padx=5, pady=2)
 
         self.meta_label = ctk.CTkLabel(self, text="")
         self.meta_label.pack(anchor="w", padx=5, pady=2)
 
-        # TEXTBOX
         self.textbox = ctk.CTkTextbox(self)
         self.textbox.pack(fill="both", expand=True, padx=5, pady=5)
 
     def set_response(self, response):
         self.textbox.delete("1.0", "end")
 
-        # STATUS COLOR
         if 200 <= response.status_code < 300:
             color = "green"
         elif 400 <= response.status_code < 500:
@@ -41,7 +38,6 @@ class ResponseViewer(ctk.CTkFrame):
             text=f"Time: {response.response_time} ms | Size: {response.size} bytes"
         )
 
-        # PRETTY JSON
         try:
             pretty = json.dumps(response.body, indent=2)
         except Exception:
