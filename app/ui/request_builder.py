@@ -19,9 +19,6 @@ class RequestBuilder(ctk.CTkFrame):
         self._build()
 
     def _build(self):
-        # =========================
-        # TOP BAR
-        # =========================
         top_frame = ctk.CTkFrame(self)
         top_frame.pack(fill="x", padx=5, pady=5)
 
@@ -46,9 +43,6 @@ class RequestBuilder(ctk.CTkFrame):
         )
         self.send_button.pack(side="left", padx=5)
 
-        # =========================
-        # ENV SECTION
-        # =========================
         env_frame = ctk.CTkFrame(self)
         env_frame.pack(fill="x", padx=5, pady=5)
 
@@ -65,20 +59,15 @@ class RequestBuilder(ctk.CTkFrame):
         )
         env_add_btn.pack(side="left", padx=5)
 
-        # =========================
-        # TABS
-        # =========================
         self.tabs = ctk.CTkTabview(self)
         self.tabs.pack(fill="both", expand=True, padx=5, pady=5)
 
         self.body_tab = self.tabs.add("Body")
         self.headers_tab = self.tabs.add("Headers")
 
-        # BODY
         self.body_text = ctk.CTkTextbox(self.body_tab)
         self.body_text.pack(fill="both", expand=True, padx=5, pady=5)
 
-        # HEADERS
         input_frame = ctk.CTkFrame(self.headers_tab)
         input_frame.pack(fill="x", padx=5, pady=5)
 
@@ -98,9 +87,6 @@ class RequestBuilder(ctk.CTkFrame):
         self.headers_display = ctk.CTkTextbox(self.headers_tab)
         self.headers_display.pack(fill="both", expand=True, padx=5, pady=5)
 
-    # =========================
-    # ENV
-    # =========================
     def add_env(self):
         key = self.env_key.get()
         value = self.env_value.get()
@@ -112,9 +98,6 @@ class RequestBuilder(ctk.CTkFrame):
             self.env_key.delete(0, "end")
             self.env_value.delete(0, "end")
 
-    # =========================
-    # HEADERS
-    # =========================
     def add_header(self):
         key = self.header_key.get()
         value = self.header_value.get()
@@ -132,9 +115,6 @@ class RequestBuilder(ctk.CTkFrame):
         for k, v in self.headers:
             self.headers_display.insert("end", f"{k}: {v}\n")
 
-    # =========================
-    # SEND
-    # =========================
     def send_request(self):
         raw_url = self.url_entry.get()
         method = self.method.get()
@@ -143,10 +123,8 @@ class RequestBuilder(ctk.CTkFrame):
             print("URL is empty!")
             return
 
-        # ENV RESOLVE
         url = self.env_manager.resolve(raw_url)
 
-        # BODY
         raw_body = self.body_text.get("1.0", "end").strip()
 
         parsed_body = None
@@ -159,7 +137,6 @@ class RequestBuilder(ctk.CTkFrame):
         if method == "GET":
             parsed_body = None
 
-        # HEADERS
         headers_dict = {k: v for k, v in self.headers}
 
         request = RequestModel(
@@ -179,17 +156,14 @@ class RequestBuilder(ctk.CTkFrame):
         self.response_viewer.set_response(response)
 
     def load_request(self, request):
-        # METHOD
         if request.method in ["GET", "POST", "PUT", "DELETE"]:
             self.method.set(request.method)
         else:
             self.method.set("GET")
 
-        # URL
         self.url_entry.delete(0, "end")
         self.url_entry.insert(0, request.url)
 
-        # BODY
         self.body_text.delete("1.0", "end")
 
         if request.body is not None:
@@ -199,6 +173,5 @@ class RequestBuilder(ctk.CTkFrame):
             except Exception:
                 self.body_text.insert("1.0", str(request.body))
 
-        # HEADERS
         self.headers = list(request.headers.items()) if request.headers else []
         self.update_headers_display()
